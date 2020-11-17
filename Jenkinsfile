@@ -24,12 +24,8 @@ pipeline {
         sh 'mvn test'
       }
     }
-
-    stage('Deliver') {
-      steps {
-        sh './jenkins/scripts/deliver.sh'
-      }
-    }
-
+	stage('Build Dockerfile') {
+        docker.build("my-app:v2","-f Dockerfile")
+       }
   }
 }
