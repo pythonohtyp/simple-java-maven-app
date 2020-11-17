@@ -1,4 +1,4 @@
-FROM jdk8:1.0      #该镜像要在jenkins服务器上
-WORKDIR /home/kmsw/
+FROM jdk8:1.1
+WORKDIR /opt/panda/
 COPY . .
-CMD ["/bin/bash","./jenkins/scripts/run.sh"]
+ENTRYPOINT ["/bin/bash","/usr/local/run.sh"]
