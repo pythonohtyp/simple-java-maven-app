@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh '/usr/local/apache-maven-3.6.3/bin/mvn -B -DskipTests clean package'
+        sh 'echo $MAVEN_HOME'
       }
     }
 
