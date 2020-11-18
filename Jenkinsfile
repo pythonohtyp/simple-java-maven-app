@@ -18,9 +18,9 @@ pipeline {
         sh 'mvn test'
       }
     }
-	stage('Build Dockerfile') {
-        steps {
-		  sh 'docker build -t java-damo:1.0 .'
+    stage('Build Dockerfile') {
+      steps {
+         sh 'docker build -t java-damo:1.0 .'
 	  }
     }
   }
