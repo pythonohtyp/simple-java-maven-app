@@ -1,11 +1,5 @@
 pipeline {
-  agent {
-    docker {
-      image 'maven:3-alpine'
-      args '-v /root/.m2:/root/.m2'
-    }
-
-  }
+  agent any
   stages {
     stage('Build') {
       steps {
@@ -25,7 +19,9 @@ pipeline {
       }
     }
 	stage('Build Dockerfile') {
-        docker.build("my-app:v2","-f Dockerfile")
-       }
+        steps {
+		  sh 'docker build -t java-damo:1.0 .'
+	  }
+    }
   }
 }
