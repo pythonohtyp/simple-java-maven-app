@@ -2,7 +2,7 @@ pipeline {
   agent any
   tools {
         maven 'maven'
-	jdk 'jdk-8'
+	java 'java'
     }
   stages {
     stage('Build') {
@@ -10,7 +10,7 @@ pipeline {
         sh 'mvn -B -DskipTests clean package'
       }
     }
-    stage('Build Dockerfile') {
+    stage('Dockerfile') {
       steps {
          sh 'docker build -t java-damo:1.0 .'
 	  }
