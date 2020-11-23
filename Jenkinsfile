@@ -26,7 +26,7 @@ pipeline {
 	  steps {
 	     sh '''
 		 docker build -t 192.168.115.128/java/java-damo:${BUILD_NUMBER} .
-		 docker login -u admin -p DtDream01 www.myharbor.com
+		 docker login -u admin -p DtDream01 192.168.115.128
 		 docker push 192.168.115.128/java/java-damo:${BUILD_NUMBER}
 		 '''
 	  }
