@@ -31,7 +31,7 @@ pipeline {
 		 '''
 	  }
 	}
-	stage(Pull and Deploy) {
+	stage('Pull and Deploy') {
 	  steps {
 	     sh 'starting deploy'
 	  }
