@@ -2,7 +2,7 @@ pipeline {
   agent any
   tools {
         maven 'maven'
-	jdk 'jdk' 
+		jdk 'jdk' 
     }
   stages {
     stage('Build') {
@@ -17,7 +17,7 @@ pipeline {
 			FROM 192.168.115.128/java/java-base:8-jdk-oralc
 			WORKDIR /opt/panda
 			COPY target/*.jar  .
-			ENTRYPOINT ['/bin/bash','/root/run.sh']
+			ENTRYPOINT ["/bin/bash","/root/run.sh"]
 			'''
 		 sh 'cat Dockerfile'
 	  }
@@ -31,9 +31,9 @@ pipeline {
 		 '''
 	  }
 	}
-	stage('Pull and Deploy') {
+	stage(Pull and Deploy) {
 	  steps {
-	     sh 'echo "starting deploy"'
+	     sh 'starting deploy'
 	  }
 	}
   }
