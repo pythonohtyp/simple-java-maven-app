@@ -7,14 +7,34 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-	sh 'echo $PATH'
+		sh 'echo $PATH'
         sh 'mvn -B -DskipTests clean package'
       }
     }
-    stage('Dockerfile') {
+    stage('Create Dockerfile') {
       steps {
-         sh 'docker build -t java-damo:1.0 .'
+         sh '''cat << EOF > Dockerfile
+			FROM 192.168.115.128/java/java-base:8-jdk-oralc
+			WORKDIR /opt/panda
+			COPY target/*.jar  .
+			ENTRYPOINT ['/bin/bash','/root/run.sh']
+			'''
+		 sh 'cat Dockerfile'
 	  }
     }
+	stage('Build Images') {
+	  steps {
+	     sh '''
+		 docker build -t 192.168.115.128/java/java-damo:${BUILD_NUMBER} .
+		 docker login -u admin -p DtDream01 www.myharbor.com
+		 docker push 192.168.115.128/java/java-damo:${BUILD_NUMBER}
+		 '''
+	  }
+	}
+	stage(Pull and Deploy) {
+	  stages {
+	     sh 'starting deploy'
+	  }
+	}
   }
 }
