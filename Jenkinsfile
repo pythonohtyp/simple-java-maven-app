@@ -33,7 +33,7 @@ pipeline {
 	}
 	stage('Pull and Deploy') {
 	  steps {
-	     sh 'starting deploy'
+	     sh 'echo "starting deploy"'
 	  }
 	}
   }
